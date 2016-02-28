@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import utils
 
 app = Flask(__name__)
@@ -9,19 +9,29 @@ app.debug = True
 def index():
     return render_template("index.html")    
 
-@app.route("/list")
+@app.route("/list", methods=['POST','GET'])
 def list():
     cols = ['Name',
             'Description',
             'Category',
             'City',
             'State']
-    sheet = utils.get_sheet('google_keys.json')
-    records = sheet.get_all_records()
 
+    sheet = utils.get_sheet('google_keys.json')
+    sheet_records = sheet.get_all_records()
+    records = []
+    if request.method == 'POST':
+        search_term = request.form['search_term']
+        for r in sheet_records:
+            all_fields = "".join([r[k] for k in cols])
+            if search_term.lower() in all_fields.lower():
+                records.append(r)
+    else:
+        records = sheet_records
     return render_template("list.html",
                            cols=cols,
                            records=records)
+
 
 if __name__ == "__main__":
     app.run()
