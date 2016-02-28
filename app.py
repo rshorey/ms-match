@@ -6,7 +6,11 @@ app = Flask(__name__)
 app.debug = True
 
 @app.route("/")
-def hello():
+def index():
+    return render_template("index.html")    
+
+@app.route("/list")
+def list():
     cols = ['Name',
             'Description',
             'Category',

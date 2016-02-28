@@ -1,0 +1,12 @@
+
+/*make jumbotron look good*/
+
+.jumbotron {
+    margin-bottom: 0px;
+    color: white;
+    font-size:50px;
+    background-image: url("../img/jumbotron.jpeg");
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
