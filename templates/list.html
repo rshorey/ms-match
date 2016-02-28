@@ -1,0 +1,23 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <table>
+            <th>
+            {% for c in cols %}
+                <td> {{ c }} </td>
+            {% endfor %}
+            </th>
+            {% for r in records %}
+                <tr>
+                {% for c in cols %}
+                    <td>
+                    {{ r[c] }}
+                    </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
