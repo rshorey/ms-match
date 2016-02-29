@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <div class="container-fluid">
+        <div class="row">
+            {% if success %}
+                You were successfully added to our system!
+                {% if require_approval %}
+                    Once you are approved by a moderator, you will appear on the site
+                {% else %}
+                    Sometimes it takes a moment for address information to appear, but it'll get there soon!
+                {% endif %}
+            {% else %}
+                Uh oh, something went wrong. Try again or contact the administrator
+            {% endif %}
+
+        </div> <!--row-->
+    </div> <!--container-fluid-->
+
+{% endblock %}
