@@ -6,8 +6,11 @@
     {% if not found %}
         We couldn't find this record. Please check the URL or contact the administrator.
     {% else %}
+        <h2> {{ record['Name'] }}</h2>
         {% for f in fieldnames %}
-            <div> {{ fieldnames[f] }} {{ record[f] }} </div>
+            {% if f != 'Name' %}
+                <div> <strong>{{ fieldnames[f] }}:</strong> {{ record[f] }} </div>
+            {% endif %}
         {% endfor %}
     {% endif %}
 
