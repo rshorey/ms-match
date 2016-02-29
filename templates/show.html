@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    {% if not found %}
+        We couldn't find this record. Please check the URL or contact the administrator.
+    {% else %}
+        {% for f in fieldnames %}
+            <div> {{ fieldnames[f] }} {{ record[f] }} </div>
+        {% endfor %}
+    {% endif %}
+
+<div class="container-fluid">
+{% endblock %}

@@ -26,7 +26,6 @@ def list():
     else:
         search_term = None
     for r in sheet_records:
-        print(r['Name'])
         if r['Approved'] == False:
             #this record hasn't been approved by the moderator
             continue
@@ -38,6 +37,7 @@ def list():
             if search_term.lower() not in all_fields.lower():
                 #skip anything where the search term doesn't appear
                 continue
+        r['url'] = '/show/{}'.format(r['ID'])
         records.append(r)
 
     return render_template("list.html",
@@ -50,7 +50,8 @@ def add():
 
     if request.method == 'GET':
         return render_template("add.html",
-                                fieldnames=settings.fieldnames)
+                                fieldnames=settings.fieldnames,
+                                categories=settings.categories)
 
     if request.method == 'POST':
         sheet = utils.get_sheet('google_keys.json')
@@ -84,6 +85,20 @@ def add():
         return render_template("item_added.html",
                 success=True,
                 require_approval=settings.require_approval)
+
+
+@app.route("/show/<record_id>", methods=['GET'])
+def show(record_id):
+    sheet = utils.get_sheet('google_keys.json')
+    sheet_records = sheet.get_all_records()
+    record = [r for r in sheet_records if r['ID']==record_id]
+    if len(record) != 1:
+        render_template("show.html",
+                        found=False)
+    return render_template("show.html",
+                            found=True,
+                            record=record[0],
+                            fieldnames=settings.fieldnames)
 
 
 if __name__ == "__main__":

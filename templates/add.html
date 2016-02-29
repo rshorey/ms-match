@@ -19,7 +19,11 @@
             </fieldset>
             <fieldset class="form-group">
                 <label>{{ fieldnames['Category'] }}</label>
-                <input type="text" class="form-control" name="category">
+                  <select class="form-control" id="exampleSelect1">
+                    {% for c in categories %}
+                       <option>{{ c }}</option>
+                    {% endfor %}
+                  </select>
             </fieldset>
             <small class="text-muted">Please select the category that best represents you</small>
 

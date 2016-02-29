@@ -17,6 +17,7 @@
         {% for c in cols %}
             <th> {{ fieldnames[c] }} </th>
         {% endfor %}
+        <th> View Full Record </th>
         </tr>
         {% for r in records %}
             <tr>
@@ -28,6 +29,7 @@
                 {% endif %}
                 </td>
             {% endfor %}
+            <td> <a href={{ r['url'] }}>Show</a></td>
             </tr>
         {% endfor %}
     </table>

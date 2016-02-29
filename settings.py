@@ -25,4 +25,5 @@ fieldnames = {'Name':'Name',
 
 #what categories are allowed? Put in as many as you want but
 #they'll display in a menu so if you do tons it'll look bad
-categories = ['Stuff', 'Things', 'Other']
+#the first item will be the default
+categories = ['Other', 'Stuff', 'Things']
