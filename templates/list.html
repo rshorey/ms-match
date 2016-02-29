@@ -15,14 +15,17 @@
     <table class="table">
         <tr>
         {% for c in cols %}
-            <th> {{ c }} </th>
+            <th> {{ fieldnames[c] }} </th>
         {% endfor %}
         </tr>
         {% for r in records %}
             <tr>
             {% for c in cols %}
                 <td>
-                {{ r[c] }}
+                {{ r[c][0:30] }}
+                {% if r[c][30:] %}
+                    ...
+                {% endif %}
                 </td>
             {% endfor %}
             </tr>

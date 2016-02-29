@@ -42,13 +42,15 @@ def list():
 
     return render_template("list.html",
                            cols=cols,
-                           records=records)
+                           records=records,
+                           fieldnames=settings.fieldnames)
 
 @app.route("/add", methods=['POST','GET'])
 def add():
 
     if request.method == 'GET':
-        return render_template("add.html")
+        return render_template("add.html",
+                                fieldnames=settings.fieldnames)
 
     if request.method == 'POST':
         sheet = utils.get_sheet('google_keys.json')
