@@ -26,7 +26,7 @@ def list():
     else:
         search_term = None
     for r in sheet_records:
-        if r['Approved'] == False:
+        if r['Approved'].lower() == "false":
             #this record hasn't been approved by the moderator
             continue
         if r['Name'].strip() == '':
@@ -54,20 +54,21 @@ def add():
                                 categories=settings.categories)
 
     if request.method == 'POST':
+        print(request)
         sheet = utils.get_sheet('google_keys.json')
-        row = [request.form['name'],
-                request.form['description'],
-                request.form['category'],
-                request.form['address1'],
-                request.form['address2'],
-                request.form['city'],
-                request.form['state'],
-                request.form['zip'],
-                request.form['phone'],
-                request.form['website'],
-                request.form['email'],
+        print("got sheet")
+        row = [request.form.get('name',''),
+                request.form.get('description',''),
+                request.form.get('category',''),
+                request.form.get('address1',''),
+                request.form.get('address2',''),
+                request.form.get('city',''),
+                request.form.get('state',''),
+                request.form.get('zip',''),
+                request.form.get('phone',''),
+                request.form.get('website',''),
+                request.form.get('email',''),
                 ]
-
         if settings.require_approval:
             row.append(False)
         else:
@@ -77,11 +78,12 @@ def add():
         try:
             sheet.insert_row(row, index=2)
         except:
+            print("false")
             return render_template("item_added.html",
                            success=False,
                            require_approval=settings.require_approval)
 
-
+        print("true")
         return render_template("item_added.html",
                 success=True,
                 require_approval=settings.require_approval)

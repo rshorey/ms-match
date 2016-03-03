@@ -7,26 +7,32 @@
     <div class="form-group">
         <form action="/add" method="post">
             Please enter the following:
-
-            <fieldset class="form-group">
-                <label>{{ fieldnames['Name'] }}</label>
-                <input type="text" class="form-control" name="name">
-            </fieldset>
+            {% if fieldnames['Name'] %}
+                <fieldset class="form-group">
+                    <label>{{ fieldnames['Name'] }}</label>
+                    <input type="text" class="form-control" name="name">
+                </fieldset>
+            {% endif %}
+            {% if fieldnames['Description'] %}
             <fieldset class="form-group">
                 <label>{{ fieldnames['Description'] }}</label>
                 <textarea class="form-control" name="description" rows="3"></textarea>
                 <small class="text-muted">What should people know about you?</small>
             </fieldset>
+            {% endif %}
+            {% if fieldnames['Category'] %}
             <fieldset class="form-group">
                 <label>{{ fieldnames['Category'] }}</label>
-                  <select class="form-control" id="exampleSelect1">
+                  <select class="form-control" name="category">
                     {% for c in categories %}
                        <option>{{ c }}</option>
                     {% endfor %}
                   </select>
             </fieldset>
             <small class="text-muted">Please select the category that best represents you</small>
+            {% endif %}
 
+            {% if fieldnames['Address1'] %}
             <div> Address is not required, but without it we can't put you on the map or help searchers find you!</div>
 
             <fieldset class="form-group">
@@ -35,39 +41,65 @@
                 <small class="text-muted">Number and street</small>
                 </fieldset>
             </fieldset>
+            {% endif %}
+
+            {% if fieldnames['Address2'] %}
             <fieldset class="form-group">
                 <label>{{ fieldnames['Address2'] }}</label>
                 <input type="text" class="form-control" name="address2">
                 <small class="text-muted">Apartment, suite, etc</small>
-
             </fieldset>
+            {% endif %}
+
+            {% if fieldnames['City'] %}
+
             <fieldset class="form-group">
                 <label>{{ fieldnames['City'] }}</label>
                 <input type="text" class="form-control" name="city">
             </fieldset>
+            {% endif %}
+
+            {% if fieldnames['State'] %}
             <fieldset class="form-group">
                 <label>{{ fieldnames['State'] }}</label>
                 <input type="text" class="form-control" name="state">
             </fieldset>
+            {% endif %}
+
+            {% if fieldnames['Zip'] %}
             <fieldset class="form-group">
                 <label>{{ fieldnames['Zip'] }}</label>
                 <input type="text" class="form-control" name="zip">
             </fieldset>
+            {% endif %}
+
+            {% if fieldnames['Phone'] or fieldnames['Email'] %}
 
             <div> Contact information is not required but without it we won't be able to get in touch or put you in touch with searchers </div>
 
+            {% endif %}
+
+            {% if fieldnames['Phone'] %}
             <fieldset class="form-group">
                 <label>{{ fieldnames['Phone'] }}</label>
                 <input type="text" class="form-control" name="phone">
             </fieldset>
+            {% endif %}
+
+            {% if fieldnames['Website'] %}
             <fieldset class="form-group">
                 <label>{{ fieldnames['Website'] }}</label>
                 <input type="text" class="form-control" name="website">
             </fieldset>
+            {% endif %}
+
+            {% if fieldnames['Email'] %}
             <fieldset class="form-group">
                 <label>{{ fieldnames['Email'] }}</label>
                 <input type="email" class="form-control" name="email">
             </fieldset>
+            {% endif %}
+
             <input type="submit" value="Submit"></input>
             <small class="text-muted">Sometimes this is a little slow, please be patient!</small>
         </form>

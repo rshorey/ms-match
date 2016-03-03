@@ -8,7 +8,7 @@
     {% else %}
         <h2> {{ record['Name'] }}</h2>
         {% for f in fieldnames %}
-            {% if f != 'Name' %}
+            {% if f != 'Name' and fieldnames[f] != None %}
                 <div> <strong>{{ fieldnames[f] }}:</strong> {{ record[f] }} </div>
             {% endif %}
         {% endfor %}

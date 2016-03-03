@@ -11,11 +11,12 @@ require_approval = False
 #what do you want the fields to be called?
 #the cannonical names are keys, the names you want to display are values
 #don't remove any keys, things will crash
+#if you don't want a field to appear, keep the key but make the value None
 fieldnames = OrderedDict([('Name','Name'),
         ('Description','Description'),
         ('Category','Category'),
-        ('Address1','Address line 1'),
-        ('Address2','Address line 2'),
+        ('Address1',None),
+        ('Address2',None),
         ('City','City'),
         ('State','State'),
         ('Zip','Zipcode'),

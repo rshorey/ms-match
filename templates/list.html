@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<h2> Search </h2>
+<div class="container-fluid">
+    <h2> Search </h2>
     <div class="form-group">
         <form action="/list" method="post">
             What are you looking for?
@@ -29,9 +30,15 @@
                 {% endif %}
                 </td>
             {% endfor %}
-            <td> <a href={{ r['url'] }}>Show</a></td>
+            <td>
+            {% if r['ID'] %}
+                <a href={{ r['url'] }}>Show</a>
+            {% else %}
+               Coming soon!
+            {% endif %}
+            </td>
             </tr>
         {% endfor %}
     </table>
-
+</div>
 {% endblock %}
