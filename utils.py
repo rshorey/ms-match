@@ -25,3 +25,6 @@ def populate_ids(credential_file):
             sheet.update_cell(row_num, id_index, row_id)
 
 
+def populate_lat_long():
+    #TODO cron job to populate lat/long cols of sheet
+    pass
